@@ -6,7 +6,7 @@
 /*   By: lud-adam <lud-adam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 18:11:52 by lud-adam          #+#    #+#             */
-/*   Updated: 2025/08/27 18:13:05 by lud-adam         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:23:14 by lud-adam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 #define PHONEBOOK_H
 
 #include <iostream>
+
+class Phonebook {
+public:
+
+	void	ADD() {
+
+	}
+	void	SEARCH() {
+
+	}
+	void	EXIT() {
+
+	}
+};
 
 class Contact {
 public:
