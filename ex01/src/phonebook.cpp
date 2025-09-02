@@ -6,7 +6,7 @@
 /*   By: lud-adam <lud-adam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 12:35:00 by lud-adam          #+#    #+#             */
-/*   Updated: 2025/09/02 15:19:10 by lud-adam         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:36:51 by lud-adam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ int	main(int argc, char *argv[])
 		{
 			if (phonebook.get_index() == 7)
 				phonebook.set_index(0);
-			contact.set_all();
+			contact.set_all_values();
+			phonebook.add_contact(contact);
 			phonebook.set_index(phonebook.get_index() + 1);
 		}
 		else if (temp == "SEARCH")
 		{
-			
+			std::cin >> temp;
+			contact = phonebook.search_contact(temp);
+			contact.print_first_name();	
 		}
 		else if (temp == "EXIT")
 		{

@@ -6,7 +6,7 @@
 /*   By: lud-adam <lud-adam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:34:31 by lud-adam          #+#    #+#             */
-/*   Updated: 2025/09/02 15:18:49 by lud-adam         ###   ########.fr       */
+/*   Updated: 2025/09/02 18:36:53 by lud-adam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CONTACT_H
 
 #include <iostream>
+
+#include "phonebook.hpp"
 
 class Contact {
 	private:
@@ -102,7 +104,7 @@ class Contact {
 			return (true);
 		}
 
-		bool	set_all(void)
+		bool	set_all_values(void)
 		{
 			if (set_first_name() == false)
 				return (false);
@@ -114,6 +116,11 @@ class Contact {
 				return (false);
 			if (set_darkest_secret() == false)
 				return (false);
+			return (true);
+		}
+		bool	print_first_name(void)
+		{
+			std::cout << this->first_name << std::endl;
 			return (true);
 		}
 };
