@@ -17,11 +17,14 @@
 
 #include <string>
 #include <cstdlib>
+#include <cerrno>
+
+bool	str_is_print(std::string str);
 
 class Phonebook 
 {
 	private:
-		Contact	contact[7];
+		Contact	contact[8];
 		size_t			id;
 	public:
 		bool	add_contact(Contact contact) 
@@ -29,9 +32,18 @@ class Phonebook
 			this->contact[this->get_index()] = contact;
 			return (true);
 		}
+
 		Contact	search_contact(std::string id) 
 		{
-			return (this->contact[atoi(id.c_str())]);
+			int	index;
+			
+			index = atoi(id.c_str());
+			if (errno == ERANGE)
+			{
+				std::cout << "OVERFLOW\n" << std::endl;
+				return (Contact());
+			}
+			return (this->contact[index]);
 		}
 		// void	exit_program() 
 		// {

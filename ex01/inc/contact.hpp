@@ -19,24 +19,29 @@
 
 class Contact {
 	private:
-		size_t		index;
+		int		index;
 		std::string first_name;
 		std::string last_name;
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
+		std::string null;
 	public:
+		Contact() : index(-1), first_name("INVALID"), last_name("INVALID"), nickname("INVALID"), phone_number("INVALID"), darkest_secret("INVALID"), null("NULL") {}
+		
 		void	set_index(size_t value) {
 			index = value;
 		}
+
 		bool	set_first_name() 
 		{
 			std::string	str;	
 
-			std::cout << "Type your first name: ";
+			std::cout << "Type your first name: " << std::endl;
 			std::cin >> str;
 			if (str.empty() == true)
 			{
+				std::cout << "STR :" << str << std::endl;
 				std::cerr << "Error: first_name not correct" << std::endl;
 				return (false);
 			}
@@ -48,7 +53,7 @@ class Contact {
 		{
 			std::string	str;	
 
-			std::cout << "Type your last name: ";
+			std::cout << "Type your last name: " << std::endl;
 			std::cin >> str;
 			if (str.empty() == true)
 			{
@@ -63,7 +68,7 @@ class Contact {
 		{
 			std::string	str;	
 
-			std::cout << "Type your nickname: ";
+			std::cout << "Type your nickname: " << std::endl;
 			std::cin >> str;
 			if (str.empty() == true)
 			{
@@ -78,7 +83,7 @@ class Contact {
 		{
 			std::string	str;	
 
-			std::cout << "Type your phone number: ";
+			std::cout << "Type your phone number: " << std::endl;
 			std::cin >> str;
 			if (str.empty() == true)
 			{
@@ -93,7 +98,7 @@ class Contact {
 		{
 			std::string	str;	
 
-			std::cout << "Type your darkest secret: ";
+			std::cout << "Type your darkest secret: " << std::endl;
 			std::cin >> str;
 			if (str.empty() == true)
 			{
@@ -118,10 +123,33 @@ class Contact {
 				return (false);
 			return (true);
 		}
-		bool	print_first_name(void)
+		void	print(const std::string str)
 		{
-			std::cout << this->first_name << std::endl;
-			return (true);
+			std::cout << str << std::endl;
+		}
+
+		void	print_all()
+		{
+			print(this->get("first_name"));
+			print(this->get("last_name"));
+			print(this->get("nickname"));
+			print(this->get("phone_number"));
+			print(this->get("darkest_secret"));
+		}
+		std::string	get(const std::string&field)
+		{
+			if (field == "first_name")
+				return (first_name);
+			else if (field == "last_name")
+				return (last_name);
+			else if (field == "nickname")
+				return (nickname);
+			else if (field == "phone_number")
+				return (phone_number);
+			else if (field == "darkest_secret")
+				return (darkest_secret);
+			else
+				return (null);
 		}
 };
 
