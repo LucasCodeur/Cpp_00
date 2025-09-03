@@ -6,15 +6,22 @@
 /*   By: lud-adam <lud-adam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:24:38 by lud-adam          #+#    #+#             */
-/*   Updated: 2025/09/03 17:33:58 by lud-adam         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:29:32 by lud-adam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
 
-void	Contact::set_index(size_t value) 
+#include <sstream>
+#include <string>
+
+void	Contact::set_index(int value) 
 {
-	index = value;
+	std::stringstream ss;
+
+	ss << value;
+	contact.index = ss.str();
+	std::cout << contact.index << std::endl;
 }
 
 bool	Contact::set_first_name(void) 
@@ -112,7 +119,7 @@ void	Contact::print_one_contact(void)
 {
 	std::cout << this->get("first_name") << std::endl;
 	std::cout << this->get("last_name") << std::endl;
-	std::cout << this->get("nickname_name") << std::endl;
+	std::cout << this->get("nickname") << std::endl;
 	std::cout << this->get("phone_number") << std::endl;
 	std::cout << this->get("darkest_secret") << std::endl;
 }
@@ -122,7 +129,7 @@ void	Contact::print_one_contact_search(void)
 	std::cout << this->get("index");
 	std::cout << this->get("first_name");
 	std::cout << this->get("last_name");
-	std::cout << this->get("nickname_name") << std::endl;
+	std::cout << this->get("nickname") << std::endl;
 }
 std::string	Contact::get(const std::string&field)
 {

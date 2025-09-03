@@ -6,7 +6,7 @@
 /*   By: lud-adam <lud-adam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 17:36:16 by lud-adam          #+#    #+#             */
-/*   Updated: 2025/09/03 17:43:58 by lud-adam         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:12:39 by lud-adam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 bool	PhoneBook::add_contact(Contact contact) 
 {
-	this->contact[this->get_index()] = contact;
+	this->contact[this->get_index() - 1] = contact;
 	return (true);
 }
 
@@ -55,13 +55,13 @@ size_t	PhoneBook::get_index(void)
 
 void	PhoneBook::print_all()
 {
-	Contact	temp;
-	
 	for (size_t i = 0; i < 9; i++)
 	{
-		temp = contact[i];
+		std::cout << contact[i].get("first_name") << std::endl;
 		if (contact[i].get("first_name") == "INVALID")
-		temp.print_one_contact_search();
+			return ;
+		else
+			contact[i].print_one_contact_search();
 	}
 }
 

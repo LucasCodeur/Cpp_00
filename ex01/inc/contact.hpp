@@ -6,7 +6,7 @@
 /*   By: lud-adam <lud-adam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:34:31 by lud-adam          #+#    #+#             */
-/*   Updated: 2025/09/03 17:35:42 by lud-adam         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:13:50 by lud-adam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class Contact {
 	private:
-		int		index;
+		std::string		index;
 		std::string first_name;
 		std::string last_name;
 		std::string nickname;
