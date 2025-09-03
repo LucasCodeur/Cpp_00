@@ -6,7 +6,7 @@
 #    By: lud-adam <lud-adam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/18 12:51:21 by lud-adam          #+#    #+#              #
-#    Updated: 2025/09/02 11:35:41 by lud-adam         ###   ########.fr        #
+#    Updated: 2025/09/03 17:44:11 by lud-adam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,21 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = phonebook
 
 P_SRC = src/
+P_PARSING = src/parsing/
 P_OBJ = .obj/
 P_INC = inc/
 
-SRC = phonebook.cpp
-SRCS = $(addprefix $(P_SRC), $(SRC))
+SRC = main.cpp \
+	  contact.cpp \
+	  phonebook.cpp \
+
+PARSING = \
+	parsing.cpp \
+
+SRCS = \
+	$(addprefix $(P_SRC), $(SRC)) \
+	$(addprefix $(P_PARSING), $(PARSING)) \
+
 OBJS = $(subst $(P_SRC), $(P_OBJ), $(SRCS:.cpp=.o))
 
 Color_Off=\033[0m
