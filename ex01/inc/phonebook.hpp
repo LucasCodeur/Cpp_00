@@ -23,11 +23,14 @@ class PhoneBook
 		Contact	contact[8];
 		size_t			i;
 	public:
+		void	add();
+		void	search();
 		void	set_index(size_t value);
 		void	print_all();
 		size_t	get_index(void); 
 		bool	add_contact(Contact contact);
-		Contact	search_contact(std::string id); 
+		Contact	search_contact(); 
+		void	exit_program();
 };
 
 #endif

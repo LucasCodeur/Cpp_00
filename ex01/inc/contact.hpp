@@ -6,7 +6,7 @@
 /*   By: lud-adam <lud-adam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:34:31 by lud-adam          #+#    #+#             */
-/*   Updated: 2025/09/03 18:13:50 by lud-adam         ###   ########.fr       */
+/*   Updated: 2025/09/03 17:35:29 by lud-adam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 
 class Contact {
 	private:
-		std::string		index;
+		size_t		index;
 		std::string first_name;
 		std::string last_name;
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
 		std::string null;
+		void	set_index(size_t value); 
 	public:
 		Contact() : index(-1), first_name("INVALID"), last_name("INVALID"), nickname("INVALID"), phone_number("INVALID"), darkest_secret("INVALID"), null("NULL") {}
 		std::string	get(const std::string&field);
@@ -34,8 +35,8 @@ class Contact {
 		bool	set_phone_number(void);
 		bool	set_nickname(void);
 		bool	set_last_name(void); 
-		void	set_index(size_t value); 
 		bool	set_first_name(void); 
+		size_t	get_index();
 };
 
 #endif

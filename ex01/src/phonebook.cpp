@@ -16,6 +16,7 @@
 #include <string>
 
 #include "phonebook.hpp"
+#include "contact.hpp"
 
 bool	PhoneBook::add_contact(Contact contact) 
 {
@@ -23,11 +24,40 @@ bool	PhoneBook::add_contact(Contact contact)
 	return (true);
 }
 
-Contact	PhoneBook::search_contact(std::string id) 
+void	PhoneBook::add()
 {
-	int	index;
+	size_t		index;
+	Contact		contact;
+
+	index = this->get_index();
+	if (index == 8)
+		this->set_index(1);
+	contact.set_all_values(index);
+	this->add_contact(contact);
+	this->set_index(this->get_index() + 1);
+}
+
+void	PhoneBook::search()
+{
+	Contact		contact;
+
+	this->print_all();
+	contact = this->search_contact();
+	if (contact.get("first_name") == "INVALID")
+	{
+		std::cout << "Error : out of range or wrong" << std::endl;
+		exit(1);
+	}
+	contact.print_one_contact();
+}
+
+Contact	PhoneBook::search_contact() 
+{
+	std::string	temp;
+	int			index;
 	
-	index = atoi(id.c_str());
+	std::cin >> temp;
+	index = atoi(temp.c_str()) - 1;
 	if (errno == ERANGE)
 	{
 		std::cout << "OVERFLOW\n" << std::endl;
@@ -38,10 +68,12 @@ Contact	PhoneBook::search_contact(std::string id)
 	return (this->contact[index]);
 }
 
-// void	PhoneBook::exit_program() 
-// {
-//
-// }
+void	PhoneBook::exit_program() 
+{
+	std::cout << "Bye bye 🛸👽👾";
+	exit(0);
+
+}
 
 void PhoneBook::set_index(size_t value) 
 {
@@ -55,13 +87,14 @@ size_t	PhoneBook::get_index(void)
 
 void	PhoneBook::print_all()
 {
+	std::cout << "-------------------------------------------" << std::endl;
 	for (size_t i = 0; i < 9; i++)
 	{
-		std::cout << contact[i].get("first_name") << std::endl;
 		if (contact[i].get("first_name") == "INVALID")
 			return ;
 		else
 			contact[i].print_one_contact_search();
 	}
+	std::cout << "-------------------------------------------" << std::endl;
 }
 
