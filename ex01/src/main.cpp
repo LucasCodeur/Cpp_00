@@ -13,7 +13,7 @@
 #include <iostream>
 #include <cctype>
 
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 int	main(int argc, char *argv[])
 {
@@ -21,13 +21,17 @@ int	main(int argc, char *argv[])
 	std::string temp;
 
 	if (argc > 1)
-		return (1);
-	(void)argv;
-	phonebook.set_index(1);
-	std::cout << "The program only accepts ADD, SEARCH and EXIT: " << std::endl;
-	while (std::cin.eof() != true || str_is_print(temp) != false)
 	{
-		std::cin >> temp;
+		std::cout << "No argument to put" << std::endl;
+		return (1);
+	}
+	(void)argv;
+	while (1)
+	{
+		std::cout << "The program only accepts ADD, SEARCH and EXIT: " << std::endl;
+		std::getline (std::cin,temp);
+		if (std::cin.eof() == true || str_is_print(temp) == false)
+			return (1);
 		if (temp == "ADD")
 			phonebook.add();
 		else if (temp == "SEARCH")
@@ -35,8 +39,7 @@ int	main(int argc, char *argv[])
 		else if (temp == "EXIT")
 			phonebook.exit_program();
 		else
-			std::cerr << "Error: " << "The program only accepts ADD, SEARCH and EXIT 👺: " << std::endl;
-
+			continue ;
 	}
 	return (0);
 }

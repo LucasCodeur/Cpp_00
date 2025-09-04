@@ -13,23 +13,25 @@
 #ifndef PHONEBOOK_H
 # define PHONEBOOK_H
 
-#include "contact.hpp"
+#include "Contact.hpp"
 
 bool	str_is_print(std::string str);
 
 class PhoneBook
 {
 	private:
-		Contact	contact[8];
 		size_t			i;
-	public:
-		void	add();
-		void	search();
+		Contact	contacts[8];
+		size_t	get_index(void); 
 		void	set_index(size_t value);
 		void	print_all();
-		size_t	get_index(void); 
 		bool	add_contact(Contact contact);
 		Contact	search_contact(); 
+
+	public:
+		PhoneBook(void) : i(1) {} 
+		void	add();
+		void	search();
 		void	exit_program();
 };
 

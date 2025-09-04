@@ -20,8 +20,8 @@ P_OBJ = .obj/
 P_INC = inc/
 
 SRC = main.cpp \
-	  contact.cpp \
-	  phonebook.cpp \
+	  Contact.cpp \
+	  PhoneBook.cpp \
 
 PARSING = \
 	parsing.cpp \

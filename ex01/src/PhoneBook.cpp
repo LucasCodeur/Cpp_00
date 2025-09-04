@@ -14,15 +14,11 @@
 #include <cerrno>
 #include <cstdlib>
 #include <string>
+#include <iomanip>
 
-#include "phonebook.hpp"
-#include "contact.hpp"
+#include "PhoneBook.hpp"
 
-bool	PhoneBook::add_contact(Contact contact) 
-{
-	this->contact[this->get_index() - 1] = contact;
-	return (true);
-}
+static void	print_titles(void);
 
 void	PhoneBook::add()
 {
@@ -30,11 +26,23 @@ void	PhoneBook::add()
 	Contact		contact;
 
 	index = this->get_index();
-	if (index == 8)
+	if (index == 9)
+	{
 		this->set_index(1);
+		index = this->get_index();
+		contact.set_all_values(index);
+		this->add_contact(contact);
+		return ;
+	}
 	contact.set_all_values(index);
 	this->add_contact(contact);
 	this->set_index(this->get_index() + 1);
+}
+
+bool	PhoneBook::add_contact(Contact contact) 
+{
+	this->contacts[this->get_index() - 1] = contact;
+	return (true);
 }
 
 void	PhoneBook::search()
@@ -46,7 +54,7 @@ void	PhoneBook::search()
 	if (contact.get("first_name") == "INVALID")
 	{
 		std::cout << "Error : out of range or wrong" << std::endl;
-		exit(1);
+		return ;
 	}
 	contact.print_one_contact();
 }
@@ -56,7 +64,7 @@ Contact	PhoneBook::search_contact()
 	std::string	temp;
 	int			index;
 	
-	std::cin >> temp;
+	std::getline (std::cin,temp);
 	index = atoi(temp.c_str()) - 1;
 	if (errno == ERANGE)
 	{
@@ -65,12 +73,12 @@ Contact	PhoneBook::search_contact()
 	}
 	else if (index < 0 || index > 8)
 		return (Contact());
-	return (this->contact[index]);
+	return (this->contacts[index]);
 }
 
 void	PhoneBook::exit_program() 
 {
-	std::cout << "Bye bye 🛸👽👾";
+	std::cout << "Bye bye 🛸👽👾" << std::endl;
 	exit(0);
 
 }
@@ -88,13 +96,25 @@ size_t	PhoneBook::get_index(void)
 void	PhoneBook::print_all()
 {
 	std::cout << "-------------------------------------------" << std::endl;
-	for (size_t i = 0; i < 9; i++)
+	print_titles();
+	for (size_t i = 0; i < 8; i++)
 	{
-		if (contact[i].get("first_name") == "INVALID")
+		if (contacts[i].get("first_name") == "INVALID")
+		{
+
+			std::cout << "-------------------------------------------" << std::endl;
 			return ;
+		}
 		else
-			contact[i].print_one_contact_search();
+			contacts[i].print_one_contact_search();
 	}
 	std::cout << "-------------------------------------------" << std::endl;
 }
 
+static void	print_titles(void)
+{
+	std::cout << "   Index  " << "|";
+	std::cout << "First name" << "|";
+	std::cout << " Last name" << "|" ;
+	std::cout << " Nickname " << std::endl;
+}
