@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <bits/stdc++.h>
-using namespace std;
+#include <iostream>
 
 int	main(int argc, char *argv[])
 {
-	string s; 
-	string res;
+	std::string s; 
+	std::string res;
 
 	if (argc < 2)
 		res = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
@@ -29,6 +28,6 @@ int	main(int argc, char *argv[])
 				res += toupper(s[j]);
 		}
 	}
-	cout << res << '\n';
+	std::cout << res << '\n';
 	return (0);
 }
