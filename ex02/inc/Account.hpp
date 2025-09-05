@@ -39,9 +39,6 @@ public:
 	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;
 	void	displayStatus( void ) const;
-	//TAKE OFF
-	int		get(const std::string&field);
-
 
 private:
 
