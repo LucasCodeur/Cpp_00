@@ -19,8 +19,8 @@ int	main ( void )
 {
 	Account account1(42);
 	
-	std::cout << account1.checkAmount() << std::endl;
+	account1.checkAmount();
 	account1.makeDeposit(42);
-	std::cout << account1.checkAmount() << std::endl;
+	account1.checkAmount();
 	return (0);
 }

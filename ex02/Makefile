@@ -19,7 +19,7 @@ P_PARSING = src/parsing/
 P_OBJ = .obj/
 P_INC = inc/
 
-SRC = main.cpp \
+SRC = tests.cpp \
 	  Account.cpp \
 
 PARSING = \

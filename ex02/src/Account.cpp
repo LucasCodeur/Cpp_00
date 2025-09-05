@@ -15,13 +15,17 @@
 #include <string>
 #include <iostream>
 
-Account::Account(int initial_deposit)
+int	Account::_nbAccounts = 0;
+
+Account::Account( int initial_deposit )
 {
-    this->_amount = initial_deposit;
-    this->_nbDeposits = 0;
-    this->_nbWithdrawals = 0;
-    // _accountIndex peut être initialisé ici (par exemple avec _nbAccounts++)
-    // et _nbAccounts doit être incrémenté aussi si tu le gères
+	this->_amount = initial_deposit;
+	this->_nbDeposits = 0;
+	this->_nbWithdrawals = 0;
+	this->_accountIndex = Account::_nbAccounts;
+	Account::_nbAccounts++;
+	this->checkAmount();
+	std::cout << "created;" << std::endl;
 }
 
  Account::~Account( void ) {
@@ -31,7 +35,7 @@ Account::Account(int initial_deposit)
 void	Account::makeDeposit( int deposit )
 {
 	this->_amount += deposit;
-	std::cout << "deposit:" << deposit;
+	std::cout << "deposit:" << deposit << ";";
 }
 
 
@@ -46,15 +50,15 @@ bool	Account::makeWithdrawal( int withdrawal )
 		return (false);
 	}
 	this->_amount -= withdrawal;
-	std::cout << "withdrawal:" << withdrawal; 
+	std::cout << "withdrawal:" << withdrawal << ";"; 
 	return (true);
 }
 
-int		Account::checkAmount( void ) const
+int	Account::checkAmount( void ) const
 {
-	int		amount;
+	int	amount;
 	amount = this->_amount;
-	std::cout << "amount:" << amount;
+	std::cout << "index:" << this->_accountIndex << "amount:" << amount << ";";
 	return (amount);
 }
 
