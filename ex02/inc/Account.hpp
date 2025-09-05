@@ -16,6 +16,9 @@
 //                               Account Class                                //
 // ************************************************************************** //
 
+//TAKE OFF
+#include <string>
+
 class Account {
 
 
@@ -36,14 +39,16 @@ public:
 	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;
 	void	displayStatus( void ) const;
+	//TAKE OFF
+	int		get(const std::string&field);
 
 
 private:
 
 	static int	_nbAccounts;
-	static int	_totalAmount;
-	static int	_totalNbDeposits;
-	static int	_totalNbWithdrawals;
+	/*static int	_totalAmount;*/
+	/*static int	_totalNbDeposits;*/
+	/*static int	_totalNbWithdrawals;*/
 
 	static void	_displayTimestamp( void );
 
