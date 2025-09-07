@@ -19,8 +19,6 @@ int	main ( void )
 {
 	Account account1(42);
 	
-	account1.checkAmount();
-	account1.makeDeposit(42);
-	account1.checkAmount();
+	account1.displayStatus();
 	return (0);
 }
