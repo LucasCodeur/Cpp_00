@@ -39,6 +39,8 @@ class Contact
 		Contact();
 		Contact(std::string str);
 		Contact(size_t id);
+		Contact& operator=(const Contact &other);
+
 		std::string	get(const std::string&field);
 		bool	set_all_values(int index);
 		void	print_one_contact(void);
