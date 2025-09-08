@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY : all clean fclean re
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = phonebook
@@ -23,12 +24,18 @@ SRC = main.cpp \
 	  Contact.cpp \
 	  PhoneBook.cpp \
 
+INC = \
+	Contact.hpp \
+	PhoneBook.hpp \
+
 PARSING = \
 	parsing.cpp \
 
 SRCS = \
 	$(addprefix $(P_SRC), $(SRC)) \
 	$(addprefix $(P_PARSING), $(PARSING)) \
+
+INCS = $(addprefix $(P_INC), $(INC)) \
 
 OBJS = $(subst $(P_SRC), $(P_OBJ), $(SRCS:.cpp=.o))
 
@@ -39,7 +46,7 @@ Cyan=\033[0;36m
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(INCS)
 	@$(CC) $(CFLAGS) -o $@ $(OBJS) && \
 	echo "$(Green)Creating executable $@$(Color_Off)" || \
 	echo "$(Red)Error creating $@$(Color_Off)"

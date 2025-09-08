@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY : all clean fclean re
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = theJobOfYourDreams
@@ -22,6 +23,9 @@ P_INC = inc/
 SRC = tests.cpp \
 	  Account.cpp \
 
+INC = \
+	Account.hpp \
+
 PARSING = \
 
 SRCS = \
@@ -30,6 +34,9 @@ SRCS = \
 
 OBJS = $(subst $(P_SRC), $(P_OBJ), $(SRCS:.cpp=.o))
 
+INCS = $(addprefix $(P_INC), $(INC)) \
+
+
 Color_Off=\033[0m
 Green=\033[0;32m
 Red=\033[0;31m
@@ -37,7 +44,7 @@ Cyan=\033[0;36m
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(INCS)
 	@$(CC) $(CFLAGS) -o $@ $(OBJS) && \
 	echo "$(Green)Creating executable $@$(Color_Off)" || \
 	echo "$(Red)Error creating $@$(Color_Off)"

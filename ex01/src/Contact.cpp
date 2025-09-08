@@ -13,120 +13,151 @@
 #include "Contact.hpp"
 
 #include <iomanip>
+#include <cstdlib>
 
 static void format_string(std::string &str);
 
-Contact::Contact() : index(-1), first_name("INVALID"), last_name("INVALID"), nickname("INVALID"), phone_number("INVALID"), darkest_secret("INVALID"), null("NULL") {}
+Contact::Contact() : id(-1), first_name("INVALID"), last_name("INVALID"), nickname("INVALID"), phone_number("INVALID"), darkest_secret("INVALID"), null("NULL") {}
 
-void	Contact::set_index(size_t value) 
-{
-	index = value;
-}
-
-bool	Contact::set_first_name(void) 
+void	Contact::set_first_name(void) 
 {
 	std::string	str;	
 
-	std::cout << "Type your first name: " << std::endl;
-	std::getline (std::cin, str);
-	if (str.empty() == true)
+	std::cout << "Type your first name: \n";
+	while (1)
 	{
-		std::cout << "Error: first_name not correct" << std::endl;
-		return (false);
+		std::getline (std::cin, str);
+		if (std::cin.eof() == true)
+			exit(0);
+		if (str.empty() == true)
+		{
+			std::cout << "Error: first_name not correct, type again:\n";
+			continue ;
+		}
+		else
+			break ;
 	}
 	this->first_name = str;
-	return (true);
 }
 
-bool	Contact::set_last_name(void) 
+void	Contact::set_last_name(void) 
 {
 	std::string	str;
 
-	std::cout << "Type your last name: " << std::endl;
-	std::getline (std::cin,str);
-	if (str.empty() == true)
+	std::cout << "Type your last name: \n";
+	while (1)
 	{
-		std::cout << "Error: last_name not correct" << std::endl;
-		return (false);
+		std::getline (std::cin,str);
+		if (std::cin.eof() == true)
+			exit(0);
+		if (str.empty() == true)
+		{
+			std::cout << "Error: last_name not correct, type again:\n";
+			continue ;
+		}
+		else
+			break ;
 	}
 	this->last_name = str;
-	return (true);
 }
 
-bool	Contact::set_nickname(void) 
+void	Contact::set_nickname(void) 
 {
 	std::string	str;	
 
-	std::cout << "Type your nickname: " << std::endl;
-	std::getline (std::cin,str);
-	if (str.empty() == true)
+	std::cout << "Type your nickname: \n";
+	while (1)
 	{
-		std::cout << "Error: nickname not correct" << std::endl;
-		return (false);
+		std::getline (std::cin,str);
+		if (std::cin.eof() == true)
+			exit(0);
+		if (str.empty() == true)
+		{
+			std::cout << "Error: nickname not correct, type again :\n";
+			continue ;
+		}
+		else
+			break ;
 	}
 	this->nickname = str;
-	return (true);
 }
 
-bool	Contact::set_phone_number(void) 
+void	Contact::set_phone_number(void) 
 {
 	std::string	str;	
 
-	std::cout << "Type your phone number: " << std::endl;
-	std::getline (std::cin,str);
-	if (str.empty() == true)
+	std::cout << "Type your phone number: \n";
+	while (1)
 	{
-		std::cout << "Error: phone_number not correct" << std::endl;
-		return (false);
+		std::getline (std::cin,str);
+		if (std::cin.eof() == true)
+			exit(0);
+		if (str.empty() == true)
+		{
+			std::cout << "Error: phone_number not correct, type again:\n";
+			continue ;
+		}
+		else
+			break ;
 	}
 	this->phone_number = str;
-	return (true);
 }
 
-bool	Contact::set_darkest_secret(void) 
+void	Contact::set_darkest_secret(void) 
 {
 	std::string	str;	
 
-	std::cout << "Type your darkest secret: " << std::endl;
-	std::getline (std::cin,str);
-	if (str.empty() == true)
+	std::cout << "Type your darkest secret: \n";
+	while (1)
 	{
-		std::cout << "Error: darkest secret not correct" << std::endl;
-		return (false); }
+		std::getline (std::cin,str);
+		if (std::cin.eof() == true)
+			exit(0);
+		if (str.empty() == true)
+		{
+			std::cout << "Error: darkest secret not correct, type again:\n";
+			continue ;
+		}
+		else
+			break ;
+	}
 	this->darkest_secret = str;
-	return (true);
 }
 
-bool	Contact::set_all_values(int index)
+void	Contact::set_id(size_t index) 
 {
-	this->set_index(index);
-	if (this->set_first_name() == false)
-		return (false);
-	if (this->set_last_name() == false)
-		return (false);
-	if (this->set_nickname() == false)
-		return (false);
-	if (this->set_phone_number() == false)
-		return (false);
-	if (this->set_darkest_secret() == false)
-		return (false);
-	return (true);
+	this->id = index + 1;
+}
+
+int	Contact::get_id(void)
+{
+	return (this->id);
+}
+
+void	Contact::set_all_values(int id)
+{
+	this->set_id(id);
+	this->set_first_name();
+	this->set_last_name();
+	this->set_nickname();
+	this->set_phone_number();
+	this->set_darkest_secret(); 
 }
 
 void	Contact::print_one_contact(void)
 {
-	std::cout << this->get("first_name") << std::endl;
-	std::cout << this->get("last_name") << std::endl;
-	std::cout << this->get("nickname") << std::endl;
-	std::cout << this->get("phone_number") << std::endl;
-	std::cout << this->get("darkest_secret") << std::endl;
+	std::cout << this->get("first_name") << "\n";
+	std::cout << this->get("last_name") << "\n";
+	std::cout << this->get("nickname") << "\n";
+	std::cout << this->get("phone_number") << "\n";
+	std::cout << this->get("darkest_secret") << "\n";
 }
 
 void	Contact::print_one_contact_search(void)
 {
 	std::string	temp;
 
-	std::cout << std::right << std::setw(10) << this->get_index() << "|";
+	std::cout << std::right << std::setw(10) << this->get_id() << "|";
 	temp = this->get("first_name");
 	if (temp.length() > 10)
 		format_string(temp);
@@ -138,7 +169,7 @@ void	Contact::print_one_contact_search(void)
 	temp = this->get("nickname");
 	if (temp.length() > 10)
 		format_string(temp);
-	std::cout << std::right << std::setw(10) << temp << std::endl;
+	std::cout << std::right << std::setw(10) << temp << "\n";
 }
 
 static void format_string(std::string &str)
@@ -161,9 +192,4 @@ std::string	Contact::get(const std::string&field)
 		return (this->darkest_secret);
 	else
 		return (null);
-}
-
-size_t	Contact::get_index()
-{
-	return (this->index);
 }

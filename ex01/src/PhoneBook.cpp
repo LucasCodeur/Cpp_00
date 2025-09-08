@@ -14,35 +14,30 @@
 #include <cerrno>
 #include <cstdlib>
 #include <string>
-#include <iomanip>
 
 #include "PhoneBook.hpp"
 
 static void	print_titles(void);
 
+PhoneBook::PhoneBook(void)
+{
+	this->i = 0;
+} 
+
 void	PhoneBook::add()
 {
-	size_t		index;
 	Contact		contact;
 
-	index = this->get_index();
-	if (index == 9)
-	{
-		this->set_index(1);
-		index = this->get_index();
-		contact.set_all_values(index);
-		this->add_contact(contact);
-		return ;
-	}
-	contact.set_all_values(index);
+	if (this->get_index() == 8)
+		this->set_index(0);
+	contact.set_all_values(this->get_index());
 	this->add_contact(contact);
-	this->set_index(this->get_index() + 1);
 }
 
-bool	PhoneBook::add_contact(Contact contact) 
+void	PhoneBook::add_contact(Contact contact) 
 {
-	this->contacts[this->get_index() - 1] = contact;
-	return (true);
+	this->contacts[this->get_index()] = contact;
+	this->i++;
 }
 
 void	PhoneBook::search()
@@ -53,7 +48,7 @@ void	PhoneBook::search()
 	contact = this->search_contact();
 	if (contact.get("first_name") == "INVALID")
 	{
-		std::cout << "Error : out of range or wrong" << std::endl;
+		std::cout << "Error : out of range or wrong\n";
 		return ;
 	}
 	contact.print_one_contact();
@@ -65,20 +60,22 @@ Contact	PhoneBook::search_contact()
 	int			index;
 	
 	std::getline (std::cin,temp);
+	if (std::cin.eof() == true)
+		exit(0);
 	index = atoi(temp.c_str()) - 1;
 	if (errno == ERANGE)
 	{
-		std::cout << "OVERFLOW\n" << std::endl;
+		std::cout << "OVERFLOW\n";
 		return (Contact());
 	}
-	else if (index < 0 || index > 8)
+	else if (index < 0 || index > 7)
 		return (Contact());
 	return (this->contacts[index]);
 }
 
 void	PhoneBook::exit_program() 
 {
-	std::cout << "Bye bye 🛸👽👾" << std::endl;
+	std::cout << "Bye bye 🛸👽👾\n";
 	exit(0);
 
 }
@@ -95,20 +92,20 @@ size_t	PhoneBook::get_index(void)
 
 void	PhoneBook::print_all()
 {
-	std::cout << "-------------------------------------------" << std::endl;
+	std::cout << "-------------------------------------------\n";
 	print_titles();
 	for (size_t i = 0; i < 8; i++)
 	{
 		if (contacts[i].get("first_name") == "INVALID")
 		{
 
-			std::cout << "-------------------------------------------" << std::endl;
+			std::cout << "-------------------------------------------\n";
 			return ;
 		}
 		else
 			contacts[i].print_one_contact_search();
 	}
-	std::cout << "-------------------------------------------" << std::endl;
+	std::cout << "-------------------------------------------\n";
 }
 
 static void	print_titles(void)
@@ -116,5 +113,5 @@ static void	print_titles(void)
 	std::cout << "   Index  " << "|";
 	std::cout << "First name" << "|";
 	std::cout << " Last name" << "|" ;
-	std::cout << " Nickname " << std::endl;
+	std::cout << " Nickname \n";
 }

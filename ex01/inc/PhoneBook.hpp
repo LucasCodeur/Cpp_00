@@ -25,11 +25,11 @@ class PhoneBook
 		size_t	get_index(void); 
 		void	set_index(size_t value);
 		void	print_all();
-		bool	add_contact(Contact contact);
+		void	add_contact(Contact contact);
 		Contact	search_contact(); 
 
 	public:
-		PhoneBook(void) : i(1) {} 
+		PhoneBook(void);
 		void	add();
 		void	search();
 		void	exit_program();

@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY : all clean fclean re
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = megaphone

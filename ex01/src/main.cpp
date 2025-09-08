@@ -22,16 +22,16 @@ int	main(int argc, char *argv[])
 
 	if (argc > 1)
 	{
-		std::cout << "No argument to put" << std::endl;
+		std::cout << "No argument to put\n";
 		return (1);
 	}
 	(void)argv;
 	while (1)
 	{
-		std::cout << "The program only accepts ADD, SEARCH and EXIT: " << std::endl;
+		std::cout << "The program only accepts ADD, SEARCH and EXIT: \n";
 		std::getline (std::cin,temp);
 		if (std::cin.eof() == true || str_is_print(temp) == false)
-			return (1);
+			return (0);
 		if (temp == "ADD")
 			phonebook.add();
 		else if (temp == "SEARCH")
