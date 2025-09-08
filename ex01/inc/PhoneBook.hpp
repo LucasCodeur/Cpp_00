@@ -30,9 +30,8 @@ class PhoneBook
 
 	public:
 		PhoneBook(void);
-		void	add();
-		void	search();
-		void	exit_program();
+		bool	add();
+		Contact	search();
 };
 
 #endif

@@ -27,21 +27,22 @@ class Contact
 		std::string null;
 	private:
 		void	set_index(size_t value); 
-		void	set_darkest_secret(void);
-		void	set_phone_number(void);
-		void	set_nickname(void);
-		void	set_last_name(void); 
-		void	set_first_name(void); 
+		bool	set_darkest_secret(void);
+		bool	set_phone_number(void);
+		bool	set_nickname(void);
+		bool	set_last_name(void); 
+		bool	set_first_name(void); 
 		void	set_id(size_t index);
 		int		get_id(void); 
 
 	public:
 		Contact();
+		Contact(std::string str);
+		Contact(size_t id);
 		std::string	get(const std::string&field);
-		void	set_all_values(int index);
+		bool	set_all_values(int index);
 		void	print_one_contact(void);
 		void	print_one_contact_search(void);
-		void	print_empty_search(void);
 };
 
 #endif

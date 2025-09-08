@@ -13,7 +13,6 @@
 #include <iostream>
 #include <cerrno>
 #include <cstdlib>
-#include <string>
 
 #include "PhoneBook.hpp"
 
@@ -24,14 +23,16 @@ PhoneBook::PhoneBook(void)
 	this->i = 0;
 } 
 
-void	PhoneBook::add()
+bool	PhoneBook::add()
 {
 	Contact		contact;
 
 	if (this->get_index() == 8)
 		this->set_index(0);
-	contact.set_all_values(this->get_index());
+	if (contact.set_all_values(this->get_index()) == false)
+		return (false);
 	this->add_contact(contact);
+	return (true);
 }
 
 void	PhoneBook::add_contact(Contact contact) 
@@ -40,7 +41,7 @@ void	PhoneBook::add_contact(Contact contact)
 	this->i++;
 }
 
-void	PhoneBook::search()
+Contact	PhoneBook::search()
 {
 	Contact		contact;
 
@@ -49,9 +50,12 @@ void	PhoneBook::search()
 	if (contact.get("first_name") == "INVALID")
 	{
 		std::cout << "Error : out of range or wrong\n";
-		return ;
+		return (Contact());
 	}
+	else if (contact.get("first_name") == "EOF")
+		return (Contact("EOF"));
 	contact.print_one_contact();
+	return (Contact(1));
 }
 
 Contact	PhoneBook::search_contact() 
@@ -61,8 +65,8 @@ Contact	PhoneBook::search_contact()
 	
 	std::getline (std::cin,temp);
 	if (std::cin.eof() == true)
-		exit(0);
-	index = atoi(temp.c_str()) - 1;
+		return (Contact("EOF"));
+	index = std::atoi(temp.c_str()) - 1;
 	if (errno == ERANGE)
 	{
 		std::cout << "OVERFLOW\n";
@@ -73,16 +77,9 @@ Contact	PhoneBook::search_contact()
 	return (this->contacts[index]);
 }
 
-void	PhoneBook::exit_program() 
-{
-	std::cout << "Bye bye 🛸👽👾\n";
-	exit(0);
-
-}
-
 void PhoneBook::set_index(size_t value) 
 {
-	i = value;
+	this->i = value;
 }
 
 size_t	PhoneBook::get_index(void) 

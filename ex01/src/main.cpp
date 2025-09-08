@@ -18,8 +18,8 @@
 int	main(int argc, char *argv[])
 {
 	PhoneBook	phonebook;
-	std::string temp;
 
+	std::string temp;
 	if (argc > 1)
 	{
 		std::cout << "No argument to put\n";
@@ -33,11 +33,20 @@ int	main(int argc, char *argv[])
 		if (std::cin.eof() == true || str_is_print(temp) == false)
 			return (0);
 		if (temp == "ADD")
-			phonebook.add();
+		{
+			if (phonebook.add() == false)
+				return (0);
+		}
 		else if (temp == "SEARCH")
-				phonebook.search();
+		{
+			if (phonebook.search().get("first_name") == "EOF")
+				return (0);
+		}
 		else if (temp == "EXIT")
-			phonebook.exit_program();
+		{
+			std::cout << "Bye bye 🛸👽👾\n";
+			return (0);
+		}
 		else
 			continue ;
 	}
