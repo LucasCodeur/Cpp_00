@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sstream>
 #include <iostream>
 #include <cerrno>
 #include <cstdlib>
@@ -54,25 +55,25 @@ Contact	PhoneBook::search()
 	}
 	else if (contact.get("first_name") == "EOF")
 		return (Contact("EOF"));
-	contact.print_one_contact();
+	else
+		contact.print_one_contact();
 	return (Contact(1));
 }
 
 Contact	PhoneBook::search_contact() 
 {
-	std::string	temp;
-	int			index;
+	int					index;
+    std::istringstream	temp;
+	std::string			input;
 	
-	std::getline (std::cin,temp);
+	std::cout << "Type a digit to get your contact :\n";
+	std::getline (std::cin, input);
 	if (std::cin.eof() == true)
 		return (Contact("EOF"));
-	index = std::atoi(temp.c_str()) - 1;
-	if (errno == ERANGE)
-	{
-		std::cout << "OVERFLOW\n";
-		return (Contact());
-	}
-	else if (index < 0 || index > 7)
+	temp.str(input);
+	temp >> index;
+	index--;
+	if (index < 0 || index > 7)
 		return (Contact());
 	return (this->contacts[index]);
 }

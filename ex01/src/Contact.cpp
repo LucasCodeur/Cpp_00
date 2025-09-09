@@ -23,6 +23,19 @@ Contact::Contact(std::string str) : id(-1), first_name(str), last_name("INVALID"
 
 Contact::Contact(size_t id) : id(id), first_name("INVALID"), last_name("INVALID"), nickname("INVALID"), phone_number("INVALID"), darkest_secret("INVALID") {}
 
+Contact& Contact::operator=(const Contact &other)
+{
+	if (this != &other)
+	{
+		id = other.id;
+		first_name = other.first_name;
+		last_name = other.last_name;
+		nickname = other.nickname;
+		phone_number = other.phone_number;
+		darkest_secret = other.darkest_secret;
+	}
+	return (*this);
+}
 
 bool	Contact::set_first_name(void) 
 {
