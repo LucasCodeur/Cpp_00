@@ -62,13 +62,12 @@ Contact	PhoneBook::search()
 
 Contact	PhoneBook::search_contact() 
 {
-	int					index;
-    std::istringstream	temp;
-	std::string			input;
+	int			index = 0;
+	std::istringstream	temp;
+	std::string		input;
 	
 	std::cout << "Type a digit to get your contact :\n";
-	std::getline (std::cin, input);
-	if (std::cin.eof() == true)
+	if (std::getline (std::cin, input).bad() == true || std::cin.eof() == true)
 		return (Contact("EOF"));
 	temp.str(input);
 	temp >> index;

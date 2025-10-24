@@ -44,7 +44,8 @@ bool	Contact::set_first_name(void)
 	std::cout << "Type your first name: \n";
 	while (1)
 	{
-		std::getline (std::cin, str);
+		if (std::getline (std::cin,str).bad() == true)
+			return (false);
 		if (std::cin.eof() == true)
 			return (false);
 		if (str.empty() == true)
@@ -66,7 +67,8 @@ bool	Contact::set_last_name(void)
 	std::cout << "Type your last name: \n";
 	while (1)
 	{
-		std::getline (std::cin,str);
+		if (std::getline (std::cin,str).bad() == true)
+			return (false);
 		if (std::cin.eof() == true)
 			return (false);
 		if (str.empty() == true)
@@ -88,7 +90,8 @@ bool	Contact::set_nickname(void)
 	std::cout << "Type your nickname: \n";
 	while (1)
 	{
-		std::getline (std::cin,str);
+		if (std::getline (std::cin,str).bad() == true)
+			return (false);
 		if (std::cin.eof() == true)
 			return (false);
 		if (str.empty() == true)
@@ -110,7 +113,8 @@ bool	Contact::set_phone_number(void)
 	std::cout << "Type your phone number: \n";
 	while (1)
 	{
-		std::getline (std::cin,str);
+		if (std::getline (std::cin,str).bad() == true)
+			return (false);
 		if (std::cin.eof() == true)
 			return (false);
 		if (str.empty() == true)
@@ -132,7 +136,8 @@ bool	Contact::set_darkest_secret(void)
 	std::cout << "Type your darkest secret: \n";
 	while (1)
 	{
-		std::getline (std::cin,str);
+		if (std::getline (std::cin,str).bad() == true)
+			return (false);
 		if (std::cin.eof() == true)
 			return (false);
 		if (str.empty() == true)
